@@ -13,6 +13,6 @@
   },
   "scripts": {
     "build": "webpack -d --watch",
-    "dev": "webpack-dev-server --open"
+    "server": "webpack-dev-server --open"
   }
 }

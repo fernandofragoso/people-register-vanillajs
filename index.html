@@ -4,15 +4,37 @@
   <meta charset="UTF-8">
   <title>Easynvest</title>
   <script src="dist/bundle.js"></script>
+  <link rel="stylesheet" type="text/css" href="styles/style.css">
 </head>
 <body>
-  <div id="formPage">
-    <h1>Cadastro</h1>
+  <header>
+    <h2>Easynvest</h2>
+    <div class="menu">
+      <button class="menu-item" id="menu-item-form">Cadastro</button>
+      <button class="menu-item menu-item--inactive" id="menu-item-list">Lista</button>
+    </div>
+  </header>
+  <div class="content">
+    <div id="form-page">
+      <section class="people-form">
+        <label>Nome completo (sem abreviações)</label>
+        <input type="text" class="input-text" id="name-input">
+        <label>Email</label>
+        <input type="email" class="input-text" id="email-input">
+        <label>CPF</label>
+        <input type="text" class="input-text" id="cpf-input">
+        <label>Telefone</label>
+        <input type="text" class="input-text" id="phone-input">
+        <button class="add-button add-button--disabled" id="add-button" disabled>Cadastrar</button>
+      </section>
+    </div>
+    <div id="list-page" class="page--invisible">
+      <ul id="person-list">
 
+      </ul>
+    </div>
   </div>
-  <div id="listPage">
-    <h1>Lista</h1>
 
-  </div>
 </body>
+
 </html>

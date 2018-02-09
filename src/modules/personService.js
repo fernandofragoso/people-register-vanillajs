@@ -1,4 +1,4 @@
-export default class PeopleStorage {
+export default class PersonService {
 
   constructor() {
     this.getList();
