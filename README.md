@@ -19,8 +19,8 @@ LocalStorage based people repository
 yarn install
 ```
 
-3. Run application:
+3. Run dev server:
 
 ```shell
-yarn run dev
+yarn server
 ```
