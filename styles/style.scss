@@ -1,0 +1,114 @@
+/*
+Colors
+
+#efeeed Border/Fonts
+#333 Border/Fonts (focused)
+#eb4a46 Border/Fonts (invalid)
+
+#00c8b3 ButtonBackground
+#FFF ButtonFont
+#f6f6f6 ButtonBackground (disabled)
+#dddcdc ButtonFont (disabled)
+
+opacity 70% on ButtonHover
+*/
+
+$color-green: #00c8b3;
+$color-white: #FFF;
+$color-silver: #AAA;
+$color-disabled: #f6f6f6;
+$color-disabledtext: #dddcdc;
+
+$opacity-inactive: 0.7;
+
+$font-size-md: 12px;
+$font-size-lg: 14px;
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', Verdana, sans-serif;
+}
+
+.content {
+  margin: 20px 10px;
+}
+
+.people-form {
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  color: $color-silver;
+  font-size: $font-size-md;
+}
+
+.page--invisible {
+  display: none;
+}
+
+header {
+  padding: 0 10px;
+  display: flex;
+  align-items: center;
+  background-color: $color-green;
+  color: $color-white;
+
+  .menu {
+    margin-left: auto;
+  }
+
+  .menu-item {
+    color: $color-green;
+    text-decoration: none;
+    cursor: pointer;
+    background-color: $color-white;
+    font-size: $font-size-md;
+    padding: 10px 10px;
+    border-radius: 15px;
+    border: 0;
+    outline: 0;
+    transition: background-color 1s, opacity 0.5s, color 0.5s;
+  }
+
+  .menu-item--inactive {
+    opacity: $opacity-inactive;
+  }
+
+  .menu-item:hover {
+    color: #000;
+  }
+}
+
+.input-text {
+  border: 0;
+  border-bottom: solid 1px #333;
+  outline: 0;
+  margin: 10px 0;
+  padding: 5px;
+}
+
+.add-button {
+  border: 0;
+  background-color: $color-green;
+  color: $color-white;
+  border-radius: 20px;
+  padding: 10px;
+  font-size: $font-size-lg;
+  margin-top: 10px;
+  transition: background-color 1s, opacity 0.5s;
+}
+
+.add-button:hover {
+  opacity: $opacity-inactive;
+  cursor: pointer;
+}
+
+.add-button--disabled, .add-button--disabled:hover {
+  opacity: 1;
+  background-color: $color-disabled;
+  color: $color-disabledtext;
+  cursor: default;
+}
+

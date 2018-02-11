@@ -12,7 +12,8 @@
     "webpack-dev-server": "^2.11.1"
   },
   "scripts": {
-    "build": "webpack -d --watch",
-    "server": "webpack-dev-server --open"
+    "build": "yarn sass | webpack -d --watch",
+    "server": "yarn sass | webpack-dev-server --open",
+    "sass": "sass --watch styles:dist"
   }
 }
