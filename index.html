@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <title>Easynvest</title>
   <script src="dist/bundle.js"></script>
-  <link rel="stylesheet" type="text/css" href="dist/style.css">
+  <link rel="stylesheet" type="text/css" href="dist/app.css">
 </head>
 <body>
   <header>
@@ -28,10 +28,9 @@
         <button class="add-button add-button--disabled" id="add-button" disabled>Cadastrar</button>
       </section>
     </div>
-    <div id="list-page" class="page--invisible">
-      <ul id="person-list">
-
-      </ul>
+    <div id="list-page" class="hidden">
+      <ul id="person-list" class="person-list"></ul>
+      <div id="empty-message" class="hidden">Nenhum registro encontrado</div>
     </div>
   </div>
 

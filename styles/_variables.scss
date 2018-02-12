@@ -1,0 +1,22 @@
+$color-green: #00c8b3;
+$color-white: #FFF;
+$color-ice: #EEE;
+$color-silver: #AAA;
+$color-disabled: #f6f6f6;
+$color-disabledtext: #dddcdc;
+
+$opacity-inactive: 0.7;
+
+$font-size-md: 12px;
+$font-size-lg: 14px;
+
+%button-shared {
+    cursor: pointer;
+    font-size: $font-size-md;
+    text-decoration: none;
+    padding: 10px;
+    border-radius: 15px;
+    border: 0;
+    outline: 0;
+    transition: background-color 1s, opacity 0.5s, color 0.5s;
+}

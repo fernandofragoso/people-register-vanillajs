@@ -1,0 +1,29 @@
+.person-list {
+
+  .person-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 10px;
+    background-color: $color-ice;
+
+  }
+}
+
+.remove-button {
+  @extend %button-shared;
+  color: $color-green;
+  background-color: $color-white;
+  padding: 5px 10px;
+}
+
+.remove-button:hover {
+  color: #000;
+}
+
+#empty-message {
+  text-align: center;
+  margin: 30px;
+}

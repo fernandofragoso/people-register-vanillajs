@@ -1,0 +1,44 @@
+@import 'reset';
+@import 'variables';
+@import 'form';
+@import 'list';
+
+body {
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', Verdana, sans-serif;
+  font-size: $font-size-md;
+}
+
+.content {
+  margin: 20px 10px;
+}
+
+header {
+  padding: 0 10px;
+  display: flex;
+  align-items: center;
+  background-color: $color-green;
+  color: $color-white;
+
+  .menu {
+    margin-left: auto;
+  }
+
+  .menu-item {
+    @extend %button-shared;
+    color: $color-green;
+    background-color: $color-white;
+  }
+
+  .menu-item--inactive {
+    opacity: $opacity-inactive;
+  }
+
+  .menu-item:hover {
+    color: #000;
+  }
+}
+
+.hidden {
+  display: none;
+}
+

@@ -1,9 +1,5 @@
 export default class PersonService {
 
-  constructor() {
-    this.getList();
-  }
-
   getList() {
     if (!localStorage.getItem('people')) {
       fetch('https://private-21e8de-rafaellucio.apiary-mock.com/users')
@@ -22,6 +18,20 @@ export default class PersonService {
   savePerson(person) {
     let people = this.getList();
     people.push(person);
+    this.saveToStorage(people);
+  }
+
+  editPerson(person) {
+    let people = this.getList().map(p => {
+      return (p.cpf === person.cpf) ? person : p;
+    });
+    this.saveToStorage(people);
+  }
+
+  removePerson(cpf) {
+    let people = this.getList().filter(person => {
+      return (person.cpf !== cpf);
+    });
     this.saveToStorage(people);
   }
 

@@ -1,4 +1,3 @@
-import Person from './person';
 import PersonService from './personService';
 
 let service = new PersonService();
@@ -11,7 +10,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
   document.querySelectorAll('.input-text').forEach(input => {
     input.addEventListener('keyup', (event) => {
-      console.log(`keyup on ${event.currentTarget.id}`);
       validateFields();
     }, false);
   });
@@ -46,7 +44,12 @@ function addButtonClick() {
   let phone = document.querySelector("#phone-input").value;
   let cpf = document.querySelector("#cpf-input").value;
   let email = document.querySelector("#email-input").value;
-  let person = new Person(name, email, cpf, phone);
+  let person = {
+    name: name,
+    phone: phone,
+    email: email,
+    cpf: cpf
+  }
   service.savePerson(person);
   clearFields();
 }
