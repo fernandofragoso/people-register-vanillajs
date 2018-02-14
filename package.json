@@ -9,6 +9,7 @@
     "babel-loader": "^7.1.2",
     "babel-preset-env": "^1.6.1",
     "casperjs": "^1.1.4",
+    "jest": "^22.3.0",
     "webpack": "^3.10.0",
     "webpack-dev-server": "^2.11.1"
   },
@@ -16,6 +17,7 @@
     "build": "yarn sass & webpack -d --watch",
     "server": "yarn sass & webpack-dev-server --open",
     "e2e": "casperjs test e2e/tests.js",
+    "test": "jest",
     "sass": "sass --watch styles:dist"
   }
 }

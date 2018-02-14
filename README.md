@@ -16,11 +16,19 @@ LocalStorage based people repository
 2. Install dependencies:
 
 ```shell
-yarn install
+yarn
 ```
 
 3. Run dev server:
 
 ```shell
 yarn server
+```
+
+### Tests
+
+1. Run tests
+
+```shell
+yarn test
 ```

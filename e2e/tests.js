@@ -41,7 +41,7 @@ casper.test.begin('Form is working', 5, function suite(test) {
       'cpf': '123456789',
       'phone': '999998888',
       'email': 'casperjs@casperjs.com'
-    }, false);
+    }, true);
   });
 
   casper.then(function() {
@@ -55,15 +55,6 @@ casper.test.begin('Form is working', 5, function suite(test) {
     test.assertEquals(this.getFormValues('form#person-form').phone, "", "Phone was cleared");
     test.assertEquals(this.getFormValues('form#person-form').email, "", "Email was cleared");
   });
-
-  // casper.then(function() {
-  //   // this.setTimeout(2000, function() {
-  //     var value = this.evaluate(function(){
-  //       return JSON.parse(localStorage.getItem('casperjs'));
-  //     });
-  //     console.log("local storage value: " + value);
-  //   // });
-  // });
 
   casper.run(function() {
       test.done();
