@@ -2,9 +2,14 @@
   display: flex;
   flex-direction: column;
 
+  label:first-child {
+    margin: 0 0 5px 0;
+  }
+
   label {
     color: $color-silver;
     font-size: $font-size-md;
+    margin: 20px 0 5px 0;
   }
 }
 
@@ -12,8 +17,12 @@
   border: 0;
   border-bottom: solid 1px #333;
   outline: 0;
-  margin: 10px 0;
-  padding: 5px;
+  padding: 5px 0;
+  font-size: $font-size-lg;
+}
+
+.input-text--invalid {
+  border-bottom: solid 1px $color-red;
 }
 
 .add-button {
@@ -35,4 +44,10 @@
   background-color: $color-disabled;
   color: $color-disabledtext;
   cursor: default;
+}
+
+.validation {
+  color: $color-red;
+  font-size: $font-size-sm;
+  margin: 2px 0 10px 0;
 }

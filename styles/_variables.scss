@@ -2,13 +2,17 @@ $color-green: #00c8b3;
 $color-white: #FFF;
 $color-ice: #EEE;
 $color-silver: #AAA;
+$color-red: #F00;
 $color-disabled: #f6f6f6;
 $color-disabledtext: #dddcdc;
 
 $opacity-inactive: 0.7;
 
+$font-size-sm: 10px;
 $font-size-md: 12px;
 $font-size-lg: 14px;
+
+$media-desktop: "only screen and (min-width: 800px)";
 
 %button-shared {
     cursor: pointer;

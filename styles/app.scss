@@ -10,6 +10,10 @@ body {
 
 .content {
   margin: 20px 10px;
+  @media #{$media-desktop} {
+    width: 800px;
+    margin: 20px auto;
+  }
 }
 
 header {

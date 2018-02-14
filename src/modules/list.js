@@ -1,12 +1,8 @@
 import PersonService from './personService';
 
-let service = new PersonService();
-
 export function fillPeopleList(people) {
+  clearList();
   const ul = document.querySelector('#person-list');
-  document.querySelectorAll(".person-item").forEach(node => {
-    node.parentNode.removeChild(node);
-  });
   if (people && people.length > 0) {
     people.forEach(person => {
       let li = `
@@ -29,10 +25,16 @@ export function fillPeopleList(people) {
   })
 }
 
+function clearList() {
+  document.querySelectorAll(".person-item").forEach(node => {
+    node.parentNode.removeChild(node);
+  });
+}
+
 function removePerson(cpf) {
   if (confirm("Deseja realmente excluir?")) {
-    service.removePerson(cpf);
-    fillPeopleList();
+    PersonService.removePerson(cpf);
+    fillPeopleList(PersonService.getList());
   }
 }
 

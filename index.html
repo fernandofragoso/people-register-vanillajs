@@ -16,17 +16,23 @@
   </header>
   <div class="content">
     <div id="form-page">
-      <section class="people-form">
-        <label>Nome completo (sem abreviações)</label>
-        <input type="text" class="input-text" id="name-input">
-        <label>Email</label>
-        <input type="email" class="input-text" id="email-input">
-        <label>CPF</label>
-        <input type="text" class="input-text" id="cpf-input">
-        <label>Telefone</label>
-        <input type="text" class="input-text" id="phone-input">
-        <button class="add-button add-button--disabled" id="add-button" disabled>Cadastrar</button>
-      </section>
+      <form id="person-form">
+        <section class="people-form">
+          <label>Nome completo (sem abreviações)</label>
+          <input type="text" class="input-text" name="name" autocomplete="off" id="name-input">
+          <div id="name-validation" class="validation hidden">Campo deve ter 3 ou mais caracteres</div>
+          <label>Email</label>
+          <input type="text" class="input-text" name="email" autocomplete="off" id="email-input">
+          <div id="email-validation" class="validation hidden">Preencha o Email corretamente (exemplo@dominio.com)</div>
+          <label>CPF</label>
+          <input type="text" class="input-text" name="cpf" autocomplete="off" id="cpf-input">
+          <div id="cpf-validation" class="validation hidden">Preencha o CPF corretamente (000.000.000-00 ou apenas números)</div>
+          <label>Telefone</label>
+          <input type="text" class="input-text" name="phone" autocomplete="off" id="phone-input">
+          <div id="phone-validation" class="validation hidden">Campo deve ter 8 ou mais caracteres</div>
+          <input type="submit" class="add-button" id="add-button" value="Cadastrar" disabled>
+        </section>
+      </form>
     </div>
     <div id="list-page" class="hidden">
       <ul id="person-list" class="person-list"></ul>

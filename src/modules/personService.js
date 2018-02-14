@@ -1,4 +1,11 @@
-export default class PersonService {
+class PersonService {
+
+  constructor() {
+    if(!PersonService.instance){
+      PersonService.instance = this;
+    }
+    return PersonService.instance;
+  }
 
   getList() {
     if (!localStorage.getItem('people')) {
@@ -16,9 +23,13 @@ export default class PersonService {
   }
 
   savePerson(person) {
-    let people = this.getList();
-    people.push(person);
-    this.saveToStorage(people);
+    if (!this.findPerson(person.cpf)) {
+      let people = this.getList();
+      people.push(person);
+      this.saveToStorage(people);
+    } else {
+      throw `CPF ${person.cpf} já cadastrado!`;
+    }
   }
 
   editPerson(person) {
@@ -35,10 +46,22 @@ export default class PersonService {
     this.saveToStorage(people);
   }
 
+  findPerson(cpf) {
+    return this.getList().find(person => {
+      return (person.cpf === cpf);
+    });
+  }
+
   saveToStorage(people) {
     localStorage.setItem('people', JSON.stringify(people));
+    localStorage.setItem('casperjs', 'teste');
   }
 }
+
+const instance = new PersonService();
+Object.freeze(instance);
+
+export default instance;
 
 
 
