@@ -1,6 +1,8 @@
 import PersonService from './personService';
 import { validateCPF, validateEmail, validateName, validatePhone } from './utils';
 
+let editMode = false;
+
 document.addEventListener('DOMContentLoaded', function() {
 
   document.getElementById('person-form').addEventListener('submit', (event) => {
@@ -72,10 +74,8 @@ function validateField(field, invalid) {
 function setButtonDisabled(value) {
   let button = document.querySelector('#add-button');
   if (value) {
-    button.classList.add('add-button--disabled');
     button.setAttribute('disabled', 'disabled');
   } else {
-    button.classList.remove('add-button--disabled');
     button.removeAttribute('disabled');
   }
 }
@@ -91,12 +91,19 @@ function submitForm() {
     email: email,
     cpf: cpf
   }
-  try {
-    PersonService.savePerson(person);
-    clearFields();
-  } catch (error) {
-    alert(error);
+
+  if (editMode) {
+    PersonService.editPerson(person);
+    cancelEditMode();
+  } else {
+    try {
+      PersonService.savePerson(person);
+      clearFields();
+    } catch (error) {
+      alert(error);
+    }
   }
+  
 }
 
 function clearFields() {
@@ -104,4 +111,30 @@ function clearFields() {
     input.value = "";
   });
   setButtonDisabled(true);
+}
+
+export function setEditMode(cpf) {
+  let person = PersonService.findPerson(cpf);
+  editMode = true;
+
+  //Fill fields
+  document.querySelector("#name-input").value = person.name;
+  document.querySelector("#phone-input").value = person.phone;
+  document.querySelector("#cpf-input").value = person.cpf;
+  document.querySelector("#cpf-input").setAttribute('disabled', 'disabled')
+  document.querySelector("#email-input").value = person.email;
+
+  //Change buttons
+  document.querySelector("#add-button").value = "Editar";
+  document.querySelector("#cancel-button").classList.remove("hidden");
+  setButtonDisabled(false);
+}
+
+export function cancelEditMode() {
+  editMode = false;
+  document.querySelector("#add-button").value = "Cadastrar";
+  document.querySelector("#cancel-button").classList.add("hidden");
+  document.querySelector("#cpf-input").removeAttribute("disabled");
+  setButtonDisabled(false);
+  clearFields();
 }

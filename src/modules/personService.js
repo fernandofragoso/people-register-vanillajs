@@ -1,3 +1,5 @@
+import { clearCPF } from './utils';
+
 class PersonService {
 
   constructor() {
@@ -23,8 +25,10 @@ class PersonService {
   }
 
   savePerson(person) {
-    if (!this.findPerson(person.cpf)) {
+    let cpf = clearCPF(person.cpf);
+    if (!this.findPerson(cpf)) {
       let people = this.getList();
+      person.cpf = cpf;
       people.push(person);
       this.saveToStorage(people);
     } else {
@@ -54,7 +58,6 @@ class PersonService {
 
   saveToStorage(people) {
     localStorage.setItem('people', JSON.stringify(people));
-    localStorage.setItem('casperjs', 'teste');
   }
 }
 

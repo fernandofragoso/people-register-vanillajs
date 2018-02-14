@@ -1,5 +1,9 @@
 .person-list {
 
+  .person-item__buttons {
+    flex-shrink: 0;
+  }
+
   .person-item {
     display: flex;
     align-items: center;
@@ -12,14 +16,14 @@
   }
 }
 
-.remove-button {
+.item-button {
   @extend %button-shared;
   color: $color-green;
   background-color: $color-white;
   padding: 5px 10px;
 }
 
-.remove-button:hover {
+.item-button:hover {
   color: #000;
 }
 

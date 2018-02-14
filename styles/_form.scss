@@ -25,6 +25,19 @@
   border-bottom: solid 1px $color-red;
 }
 
+.input-text[disabled] {
+  color: $color-silver;
+}
+
+.button-group {
+  display: flex;
+  flex-direction: column;
+  @media #{$media-desktop} {
+    flex-direction: row;
+    justify-content: center;
+  }
+}
+
 .add-button {
   @extend %button-shared;
   background-color: $color-green;
@@ -32,6 +45,23 @@
   border-radius: 20px;
   font-size: $font-size-lg;
   margin-top: 10px;
+  @media #{$media-desktop} {
+    width: 200px;
+    margin: 10px 5px;
+  }
+}
+
+.cancel-button {
+  @extend %button-shared;
+  background-color: #CCC;
+  color: $color-white;
+  border-radius: 20px;
+  margin-top: 5px;
+  font-size: $font-size-lg;
+  @media #{$media-desktop} {
+    width: 200px;
+    margin: 10px 5px;
+  }
 }
 
 .add-button:hover {
@@ -39,7 +69,7 @@
   cursor: pointer;
 }
 
-.add-button--disabled, .add-button--disabled:hover {
+.add-button[disabled], .add-button[disabled]:hover {
   opacity: 1;
   background-color: $color-disabled;
   color: $color-disabledtext;

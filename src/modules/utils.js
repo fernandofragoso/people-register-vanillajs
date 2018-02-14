@@ -17,3 +17,7 @@ export function validateName(name) {
   var re = /[\S\s]{3,}/;
   return re.test(name);
 }
+
+export function clearCPF(cpf) {
+  return cpf.replace(/[.-]/g, "");
+}

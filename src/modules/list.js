@@ -1,4 +1,6 @@
 import PersonService from './personService';
+import { setEditMode } from './form';
+import { showForm } from '../app';
 
 export function fillPeopleList(people) {
   clearList();
@@ -7,7 +9,11 @@ export function fillPeopleList(people) {
     people.forEach(person => {
       let li = `
       <li class="person-item">
-        ${person.name} (${person.email}) <button class="remove-button" value="${person.cpf}">X</button>
+        ${person.name} (${person.email})
+        <div class="person-item__buttons">
+          <button class="item-button edit-button" value="${person.cpf}">Edit</button>
+          <button class="item-button remove-button" value="${person.cpf}">X</button>
+        </div>
       </li>`
       ul.insertAdjacentHTML('beforeend', li);
     });
@@ -16,13 +22,19 @@ export function fillPeopleList(people) {
     document.querySelector('#empty-message').classList.remove('hidden');
   }
 
-
   document.querySelectorAll('.remove-button').forEach(node => {
     node.addEventListener('click', (event) => {
       let cpf = event.currentTarget.getAttribute("value");
       removePerson(cpf);
     }, false);
-  })
+  });
+
+  document.querySelectorAll('.edit-button').forEach(node => {
+    node.addEventListener('click', (event) => {
+      let cpf = event.currentTarget.getAttribute("value");
+      editPerson(cpf);
+    }, false);
+  });
 }
 
 function clearList() {
@@ -36,5 +48,10 @@ function removePerson(cpf) {
     PersonService.removePerson(cpf);
     fillPeopleList(PersonService.getList());
   }
+}
+
+function editPerson(cpf) {
+  showForm();
+  setEditMode(cpf);
 }
 
