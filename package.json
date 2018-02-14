@@ -15,6 +15,7 @@
   },
   "scripts": {
     "build": "yarn sass & webpack -d --watch",
+    "start": "yarn sass & webpack -d --watch",
     "server": "yarn sass & webpack-dev-server --open",
     "e2e": "casperjs test e2e/tests.js",
     "test": "jest",
