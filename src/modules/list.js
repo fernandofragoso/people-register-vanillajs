@@ -38,7 +38,7 @@ export function fillPeopleList(people) {
 }
 
 function clearList() {
-  document.querySelectorAll(".person-item").forEach(node => {
+  Array.prototype.slice.call(document.getElementsByClassName("person-item")).forEach(node => {
     node.parentNode.removeChild(node);
   });
 }

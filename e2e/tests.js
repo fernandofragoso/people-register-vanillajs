@@ -1,4 +1,9 @@
 casper.test.begin('Page loads correclty', 3, function suite(test) {
+
+  casper.on('remote.message', function(message) {
+    this.log('console.log: ' + message, 'warning');
+  });
+
   casper.start("http://localhost:8080", function() {
     test.assertTitle("Easynvest", "Title is correct");
     test.assertExists('#form-page', "Form is shown");
@@ -34,18 +39,21 @@ casper.test.begin('Menu links are working', 4, function suite(test) {
   });
 });
 
-casper.test.begin('Form is working', 5, function suite(test) {
+casper.test.begin('Form is working', 6, function suite(test) {
   casper.start("http://localhost:8080", function() {
     this.fill('form#person-form', {
       'name': 'CasperJS',
-      'cpf': '123456789',
+      'cpf': '06006006060',
       'phone': '999998888',
       'email': 'casperjs@casperjs.com'
-    }, true);
+    }, false);
   });
 
+  casper.evaluate(function() {
+    localStorage.setItem('people', JSON.stringify([]));
+  }, {});
+
   casper.then(function() {
-    test.assertDoesntExist('.add-button--disabled', "Add button is enabled");
     this.click(".add-button");
   });
 
@@ -54,6 +62,15 @@ casper.test.begin('Form is working', 5, function suite(test) {
     test.assertEquals(this.getFormValues('form#person-form').cpf, "", "Cpf was cleared");
     test.assertEquals(this.getFormValues('form#person-form').phone, "", "Phone was cleared");
     test.assertEquals(this.getFormValues('form#person-form').email, "", "Email was cleared");
+  });
+
+  casper.then(function() {
+    this.click("#menu-item-list");
+  });
+
+  casper.then(function() {
+    test.assertElementCount('.person-item', 1);
+    test.assertTextExists('CasperJS', 'CasperJS item found');
   });
 
   casper.run(function() {

@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }, false);
   });
 
-  document.querySelector('#add-button').classList.add('add-button--disabled');
+  document.querySelector('#add-button').setAttribute('disabled', 'disabled');
 });
 
 function validateSubmit() {
@@ -105,8 +105,9 @@ function submitForm() {
 }
 
 function clearFields() {
-  document.querySelectorAll('.input-text').forEach(input => {
-    input.value = "";
+  const inputs = ["#name-input", "#phone-input", "#cpf-input", "#email-input"];
+  inputs.forEach(input => {
+    document.querySelector(input).value = "";
   });
   setButtonDisabled(true);
 }
@@ -119,7 +120,7 @@ export function setEditMode(cpf) {
   document.querySelector("#name-input").value = person.name;
   document.querySelector("#phone-input").value = person.phone;
   document.querySelector("#cpf-input").value = person.cpf;
-  document.querySelector("#cpf-input").setAttribute('disabled', 'disabled')
+  document.querySelector("#cpf-input").setAttribute('disabled', 'disabled');
   document.querySelector("#email-input").value = person.email;
 
   //Change buttons
@@ -135,5 +136,6 @@ export function cancelEditMode() {
   document.querySelector("#cpf-input").removeAttribute("disabled");
   setButtonDisabled(false);
   clearFields();
+  clearValidations();
   showList();
 }

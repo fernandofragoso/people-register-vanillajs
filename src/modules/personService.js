@@ -21,6 +21,7 @@ class PersonService {
         this.saveToStorage([]);
       });
     }
+    console.log("getList " + localStorage.getItem('people'));
     return JSON.parse(localStorage.getItem('people'));
   }
 
@@ -51,9 +52,10 @@ class PersonService {
   }
 
   findPerson(cpf) {
-    return this.getList().find(person => {
+    let person = this.getList().filter(person => {
       return (person.cpf === cpf);
     });
+    return person[0] ? person[0] : null;
   }
 
   saveToStorage(people) {
