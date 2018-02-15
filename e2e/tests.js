@@ -1,4 +1,9 @@
 casper.test.begin('Page loads correclty', 3, function suite(test) {
+  
+  casper.on('remote.message', function(message) {
+    this.log('console.log: ' + message, 'warning');
+  });   
+  
   casper.start("http://localhost:8080", function() {
     test.assertTitle("Easynvest", "Title is correct");
     test.assertExists('#form-page', "Form is shown");
@@ -34,18 +39,21 @@ casper.test.begin('Menu links are working', 4, function suite(test) {
   });
 });
 
-casper.test.begin('Form is working', 5, function suite(test) {
+casper.test.begin('Form is working', 4, function suite(test) {
   casper.start("http://localhost:8080", function() {
     this.fill('form#person-form', {
       'name': 'CasperJS',
-      'cpf': '123456789',
+      'cpf': '06006006060',
       'phone': '999998888',
       'email': 'casperjs@casperjs.com'
     }, true);
   });
 
+  casper.evaluate(function() {
+    localStorage.setItem('people', JSON.stringify([]));
+  }, {});
+
   casper.then(function() {
-    test.assertDoesntExist('.add-button--disabled', "Add button is enabled");
     this.click(".add-button");
   });
 
