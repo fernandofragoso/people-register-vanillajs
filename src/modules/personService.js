@@ -17,11 +17,9 @@ class PersonService {
         this.saveToStorage(people);
       })
       .catch(err => {
-        console.log('Error fetching');
         this.saveToStorage([]);
       });
     }
-    console.log("getList " + localStorage.getItem('people'));
     return JSON.parse(localStorage.getItem('people'));
   }
 

@@ -5,9 +5,7 @@ LocalStorage based people repository
 
 ### Requirements
 
-1. Install [yarn](https://yarnpkg.com/en/docs/install)
-
-2. Install [sass](https://sass-lang.com/install)
+Install [yarn](https://yarnpkg.com/en/docs/install) and [sass](https://sass-lang.com/install)
 
 ### Instructions
 
@@ -31,4 +29,14 @@ yarn server
 
 ```shell
 yarn test
+```
+
+### E2E Tests
+
+1. Install [CasperJS](http://casperjs.org/) and [PhantomJS](http://phantomjs.org/)
+
+2. Run tests
+
+```shell
+yarn e2e
 ```

@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', function() {
     cancelEditMode();
   }, false);
 
-  document.querySelectorAll('.input-text').forEach(input => {
+  Array.prototype.slice.call(document.getElementsByClassName("input-text")).forEach(input => {
     input.addEventListener('keyup', (event) => {
       validateSubmit();
     }, false);
@@ -25,8 +25,6 @@ document.addEventListener('DOMContentLoaded', function() {
       validateSubmit();
     }, false);
   });
-
-  document.querySelector('#add-button').setAttribute('disabled', 'disabled');
 });
 
 function validateSubmit() {

@@ -22,14 +22,14 @@ export function fillPeopleList(people) {
     document.querySelector('#empty-message').classList.remove('hidden');
   }
 
-  document.querySelectorAll('.remove-button').forEach(node => {
+  Array.prototype.slice.call(document.getElementsByClassName("remove-button")).forEach(node => {
     node.addEventListener('click', (event) => {
       let cpf = event.currentTarget.getAttribute("value");
       removePerson(cpf);
     }, false);
   });
 
-  document.querySelectorAll('.edit-button').forEach(node => {
+  Array.prototype.slice.call(document.getElementsByClassName("edit-button")).forEach(node => {
     node.addEventListener('click', (event) => {
       let cpf = event.currentTarget.getAttribute("value");
       editPerson(cpf);
