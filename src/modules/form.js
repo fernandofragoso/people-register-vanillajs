@@ -105,14 +105,10 @@ function submitForm() {
 }
 
 function clearFields() {
-  // TODO: not working on e2e
-  // document.querySelectorAll('.input-text').forEach(input => {
-  //   input.value = "";
-  // });
-  document.querySelector("#name-input").value = "";
-  document.querySelector("#phone-input").value = "";
-  document.querySelector("#cpf-input").value = "";
-  document.querySelector("#email-input").value = "";
+  const inputs = ["#name-input", "#phone-input", "#cpf-input", "#email-input"];
+  inputs.forEach(input => {
+    document.querySelector(input).value = "";
+  });
   setButtonDisabled(true);
 }
 
