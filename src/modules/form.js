@@ -107,9 +107,14 @@ function submitForm() {
 }
 
 function clearFields() {
-  document.querySelectorAll('.input-text').forEach(input => {
-    input.value = "";
-  });
+  // TODO: not working on e2e
+  // document.querySelectorAll('.input-text').forEach(input => {
+  //   input.value = "";
+  // });
+  document.querySelector("#name-input").value = "";
+  document.querySelector("#phone-input").value = "";
+  document.querySelector("#cpf-input").value = "";
+  document.querySelector("#email-input").value = "";
   setButtonDisabled(true);
 }
 
@@ -121,7 +126,7 @@ export function setEditMode(cpf) {
   document.querySelector("#name-input").value = person.name;
   document.querySelector("#phone-input").value = person.phone;
   document.querySelector("#cpf-input").value = person.cpf;
-  document.querySelector("#cpf-input").setAttribute('disabled', 'disabled')
+  document.querySelector("#cpf-input").setAttribute('disabled', 'disabled');
   document.querySelector("#email-input").value = person.email;
 
   //Change buttons
