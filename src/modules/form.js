@@ -1,5 +1,6 @@
 import PersonService from './personService';
 import { validateCPF, validateEmail, validateName, validatePhone } from './utils';
+import { showList } from '../app';
 
 let editMode = false;
 
@@ -8,6 +9,11 @@ document.addEventListener('DOMContentLoaded', function() {
   document.getElementById('person-form').addEventListener('submit', (event) => {
     event.preventDefault();
     submitForm();
+  }, false);
+
+  document.getElementById('cancel-button').addEventListener('click', (event) => {
+    event.preventDefault();
+    cancelEditMode();
   }, false);
 
   document.querySelectorAll('.input-text').forEach(input => {
@@ -44,15 +50,6 @@ function validateSubmit() {
   }
   setButtonDisabled(!allValid);
 }
-
-// function validateFields() {
-//   let name = document.querySelector("#name-input").value;
-//   let phone = document.querySelector("#phone-input").value;
-//   let cpf = document.querySelector("#cpf-input").value;
-//   let email = document.querySelector("#email-input").value;
-
-
-// }
 
 function clearValidations() {
   const fields = ["name", "email", "cpf", "phone"];
@@ -95,6 +92,7 @@ function submitForm() {
   if (editMode) {
     PersonService.editPerson(person);
     cancelEditMode();
+    showList();
   } else {
     try {
       PersonService.savePerson(person);
@@ -103,7 +101,7 @@ function submitForm() {
       alert(error);
     }
   }
-  
+
 }
 
 function clearFields() {
@@ -137,4 +135,5 @@ export function cancelEditMode() {
   document.querySelector("#cpf-input").removeAttribute("disabled");
   setButtonDisabled(false);
   clearFields();
+  showList();
 }
