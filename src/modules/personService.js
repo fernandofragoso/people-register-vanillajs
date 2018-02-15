@@ -21,6 +21,7 @@ class PersonService {
         this.saveToStorage([]);
       });
     }
+    console.log("getList " + localStorage.getItem('people'));
     return JSON.parse(localStorage.getItem('people'));
   }
 

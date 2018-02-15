@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }, false);
   });
 
-  document.querySelector('#add-button').classList.add('add-button--disabled');
+  document.querySelector('#add-button').setAttribute('disabled', 'disabled');
 });
 
 function validateSubmit() {
@@ -140,5 +140,6 @@ export function cancelEditMode() {
   document.querySelector("#cpf-input").removeAttribute("disabled");
   setButtonDisabled(false);
   clearFields();
+  clearValidations();
   showList();
 }
