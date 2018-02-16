@@ -1,5 +1,7 @@
 casper.test.begin('Page loads correclty', 3, function suite(test) {
   
+  casper.options.clientScripts.push("node_modules/babel-polyfill/dist/polyfill.js");
+  
   casper.on('remote.message', function(message) {
     this.log('console.log: ' + message, 'warning');
   });
@@ -74,7 +76,7 @@ casper.test.begin('Add a new person', 6, function suite(test) {
   });
 
   casper.run(function() {
-      test.done();
+    test.done();
   });
 });
 

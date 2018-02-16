@@ -88,18 +88,17 @@ function submitForm() {
   }
 
   if (editMode) {
-    PersonService.editPerson(person);
-    cancelEditMode();
-    showList();
+    PersonService.editPerson(person).then(() => {
+      cancelEditMode();
+      showList();
+    });
   } else {
-    try {
-      PersonService.savePerson(person);
+    PersonService.savePerson(person).then(success => {
       clearFields();
-    } catch (error) {
+    }).catch(error => {
       alert(error);
-    }
+    });
   }
-
 }
 
 function clearFields() {
@@ -111,20 +110,21 @@ function clearFields() {
 }
 
 export function setEditMode(cpf) {
-  let person = PersonService.findPerson(cpf);
-  editMode = true;
-
-  //Fill fields
-  document.querySelector("#name-input").value = person.name;
-  document.querySelector("#phone-input").value = person.phone;
-  document.querySelector("#cpf-input").value = person.cpf;
-  document.querySelector("#cpf-input").setAttribute('disabled', 'disabled');
-  document.querySelector("#email-input").value = person.email;
-
-  //Change buttons
-  document.querySelector("#add-button").value = "Editar";
-  document.querySelector("#cancel-button").classList.remove("hidden");
-  setButtonDisabled(false);
+  PersonService.findPerson(cpf).then(person => {
+    editMode = true;
+  
+    //Fill fields
+    document.querySelector("#name-input").value = person.name;
+    document.querySelector("#phone-input").value = person.phone;
+    document.querySelector("#cpf-input").value = person.cpf;
+    document.querySelector("#cpf-input").setAttribute('disabled', 'disabled');
+    document.querySelector("#email-input").value = person.email;
+  
+    //Change buttons
+    document.querySelector("#add-button").value = "Editar";
+    document.querySelector("#cancel-button").classList.remove("hidden");
+    setButtonDisabled(false);
+  });
 }
 
 export function cancelEditMode() {

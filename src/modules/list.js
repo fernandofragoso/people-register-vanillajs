@@ -45,8 +45,11 @@ function clearList() {
 
 function removePerson(cpf) {
   if (confirm("Deseja realmente excluir?")) {
-    PersonService.removePerson(cpf);
-    fillPeopleList(PersonService.getList());
+    PersonService.removePerson(cpf).then(() => {
+      PersonService.getList().then(list => {
+        fillPeopleList(list);
+      });
+    });
   }
 }
 

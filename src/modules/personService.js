@@ -10,50 +10,75 @@ class PersonService {
   }
 
   getList() {
-    if (!localStorage.getItem('people')) {
-      fetch('https://private-21e8de-rafaellucio.apiary-mock.com/users')
-      .then(res => res.json())
-      .then(people => {
-        this.saveToStorage(people);
-      })
-      .catch(err => {
-        this.saveToStorage([]);
-      });
-    }
-    return JSON.parse(localStorage.getItem('people'));
+    return new Promise((resolve, reject) => {
+      if (!localStorage.getItem('people')) {
+        fetch('https://private-21e8de-rafaellucio.apiary-mock.com/users')
+        .then(res => res.json())
+        .then(people => {
+          this.saveToStorage(people);
+          resolve(JSON.parse(localStorage.getItem('people')));
+        })
+        .catch(err => {
+          this.saveToStorage([]);
+          resolve(JSON.parse(localStorage.getItem('people')));
+        });
+      } else {
+        resolve(JSON.parse(localStorage.getItem('people')));
+      }
+    });
   }
 
   savePerson(person) {
-    let cpf = clearCPF(person.cpf);
-    if (!this.findPerson(cpf)) {
-      let people = this.getList();
-      person.cpf = cpf;
-      people.push(person);
-      this.saveToStorage(people);
-    } else {
-      throw `CPF ${person.cpf} já cadastrado!`;
-    }
+    return new Promise((resolve, reject) => {
+      let cpf = clearCPF(person.cpf);
+      this.findPerson(cpf).then(personExists => {
+        if (!personExists) {
+          this.getList().then(people => {
+            person.cpf = cpf;
+            people.push(person);
+            this.saveToStorage(people);
+            resolve();
+          });
+        } else {
+          reject(`CPF ${cpf} já cadastrado!`);
+        }
+      });
+    });
   }
 
   editPerson(person) {
-    let people = this.getList().map(p => {
-      return (p.cpf === person.cpf) ? person : p;
+    return new Promise((resolve, reject) => {
+      this.getList().then(list => {
+        let people = list.map(p => {
+          return (p.cpf === person.cpf) ? person : p;
+        });
+        this.saveToStorage(people);
+        resolve();
+      });
     });
-    this.saveToStorage(people);
   }
 
   removePerson(cpf) {
-    let people = this.getList().filter(person => {
-      return (person.cpf !== cpf);
+    return new Promise((resolve, reject) => {
+      this.getList().then(list => {
+        let people = list.filter(person => {
+          return (person.cpf !== cpf);
+        });
+        this.saveToStorage(people);
+        resolve();
+      });
     });
-    this.saveToStorage(people);
   }
 
   findPerson(cpf) {
-    let person = this.getList().filter(person => {
-      return (person.cpf === cpf);
+    return new Promise((resolve, reject) => {
+      this.getList().then(list => {
+        let person = list.filter(person => {
+          return (person.cpf === cpf);
+        });
+        resolve(person[0] ? person[0] : null);
+      });
     });
-    return person[0] ? person[0] : null;
   }
 
   saveToStorage(people) {

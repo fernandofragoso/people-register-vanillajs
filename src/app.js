@@ -9,7 +9,6 @@ document.addEventListener('DOMContentLoaded', function() {
   document.querySelector('#menu-item-list').addEventListener('click', () => {
     showList();
   }, false);
-  PersonService.getList();
 });
 
 export function showList() {
@@ -20,7 +19,9 @@ export function showList() {
   document.querySelector('#menu-item-form').classList.add('menu-item--inactive');
   document.querySelector('#menu-item-list').classList.remove('menu-item--inactive');
 
-  fillPeopleList(PersonService.getList());
+  PersonService.getList().then(list => {
+    fillPeopleList(list);
+  });
 }
 
 export function showForm() {
