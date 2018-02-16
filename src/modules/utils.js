@@ -9,7 +9,7 @@ export function validatePhone(phone) {
 }
 
 export function validateCPF(cpf) {
-  var re = /[0-9]{3}\.?[0-9]{3}\.?[0-9]{3}\-?[0-9]{2}/;
+  var re = /^(([0-9]{3}.[0-9]{3}.[0-9]{3}-[0-9]{2})|([0-9]{11}))$/;
   return re.test(cpf);
 }
 

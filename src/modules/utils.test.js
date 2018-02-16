@@ -3,11 +3,15 @@ import { validateCPF, validateEmail, validateName, validatePhone, clearCPF } fro
 test('Validate CPF with dots and hypen', () => {
   expect(validateCPF("060.606.060-60")).toBeTruthy();
   expect(validateCPF("060.606.060--60")).toBeFalsy();
+  expect(validateCPF("060606060-60")).toBeFalsy();
+  expect(validateCPF("060606.060-60")).toBeFalsy();
 });
 
 test('Validate CPF with only numbers', () => {
   expect(validateCPF("06060606060")).toBeTruthy();
   expect(validateCPF("0606060606")).toBeFalsy();
+  expect(validateCPF("06060606066666")).toBeFalsy();
+  expect(validateCPF("06060606060000")).toBeFalsy();
 });
 
 test('Validate Email', () => {
