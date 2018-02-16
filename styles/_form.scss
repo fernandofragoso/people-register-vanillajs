@@ -19,14 +19,14 @@
   outline: 0;
   padding: 5px 0;
   font-size: $font-size-lg;
+
+  &[disabled] {
+    color: $color-silver;
+  }
 }
 
 .input-text--invalid {
   border-bottom: solid 1px $color-red;
-}
-
-.input-text[disabled] {
-  color: $color-silver;
 }
 
 .button-group {
@@ -49,6 +49,18 @@
     width: 200px;
     margin: 10px 5px;
   }
+
+  &:hover {
+    opacity: $opacity-inactive;
+    cursor: pointer;
+  }
+
+  &[disabled], &[disabled]:hover {
+    opacity: 1;
+    background-color: $color-disabled;
+    color: $color-disabledtext;
+    cursor: default;
+  }
 }
 
 .cancel-button {
@@ -62,18 +74,11 @@
     width: 200px;
     margin: 10px 5px;
   }
-}
 
-.add-button:hover {
-  opacity: $opacity-inactive;
-  cursor: pointer;
-}
-
-.add-button[disabled], .add-button[disabled]:hover {
-  opacity: 1;
-  background-color: $color-disabled;
-  color: $color-disabledtext;
-  cursor: default;
+  &:hover {
+    opacity: $opacity-inactive;
+    cursor: pointer;
+  }
 }
 
 .validation {

@@ -31,14 +31,13 @@ header {
     @extend %button-shared;
     color: $color-green;
     background-color: $color-white;
+    &:hover {
+      color: #000;
+    }
   }
 
   .menu-item--inactive {
     opacity: $opacity-inactive;
-  }
-
-  .menu-item:hover {
-    color: #000;
   }
 }
 

@@ -21,10 +21,9 @@
   color: $color-green;
   background-color: $color-white;
   padding: 5px 10px;
-}
-
-.item-button:hover {
-  color: #000;
+  &:hover {
+    color: #000;
+  }
 }
 
 #empty-message {
